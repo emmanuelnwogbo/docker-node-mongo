@@ -1,0 +1,17 @@
+version: '3'
+services:
+  #app is building from our Dockerfile
+  app:
+    container_name: docker-node-mongo
+    restart: always
+    build: .
+    ports:
+      - '80:3000'
+    links:
+      - mongo
+  #mongo here is not building from out Docker file, so the setup will look different
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports: 
+      - '27017:27017'
